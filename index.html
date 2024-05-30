@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="https://delivered-by-madington.com/streamedby/2.0/streamedby.js"></script>
+    <script
+        src="https://delivered-by-madington.com/messenger/messenger.js?api_key=c9fdbe18-4a10-4444-9003-60e80ebb5442"></script>
+</head>
+
+<body>
+    <style>
+        body {
+            width: 100vw;
+            height: 100vh;
+            background: #fff;
+            margin: 0;
+            pointer-events: all;
+            cursor: pointer;
+        }
+
+        body>* {
+            pointer-events: none;
+        }
+
+        .header {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            top: 20px;
+            font-size: 20px;
+            color: #000
+        }
+
+        .button {
+            width: 50px;
+            height: 50px;
+            border-radius: 25px;
+            background: #000;
+            color: #fff;
+            text-align: center;
+            line-height: 50px;
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: none;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+        }
+
+        .bgImage {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            background-size: cover !important;
+            background-repeat: no-repeat !important;
+            background-position: center !important;
+        }
+    </style>
+    <video id="video" src="" autoplay muted></video>
+    <div class="bgImage"></div>
+    <div class="header"></div>
+    <div class="button"></div>
+    <script type="module" src="./script.js"></script>
+</body>
+
+</html>
