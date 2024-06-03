@@ -9,3 +9,14 @@ Enhance the index.html file by adding the necessary HTML elements. Apply appropr
 
 Step 3: Use the updateDOM function in script.js file to determine how the captured data from MESS should be used.
 This function is responsible for updating the ad with the dynamic inputs from MESS.
+
+
+## The different props of the MESS system
+ Text // String
+ Select // String
+ Color // String
+ Image // String
+ Video // String
+ Stream // String
+ Boolean // Boolean
+ Config // String 

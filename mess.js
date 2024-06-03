@@ -10,6 +10,10 @@ export let trackingValues = {
 };
 
 function track(ev, c, po) {
+    if (trackingValues.triggered[ev] != undefined) {
+        trackingValues.triggered[ev] = true;
+    }
+
     if (
         window.name != "mess-style" && window.name != "mess-dev"
     ) {
@@ -35,7 +39,6 @@ function track(ev, c, po) {
         }
     }
 }
-
 
 export const startMESS = () => {
     window.addEventListener("message", async (e) => {
@@ -75,13 +78,12 @@ export const startMESS = () => {
         return true
     } else {
         if (Object.keys(window.dynamicContent).length !== 0) {
-            const newPO = `${trackingValues.po}-${window.dynamicContent?.lang}`.toUpperCase();
-            const newC = `${trackingValues.c}-${window.dynamicContent?.lang
-                }-${window.dynamicContent?.styleName
-                    ?.normalize("NFD")
-                    .replace(/[\u0300-\u036f]/g, "")
-                    .replace(/\ {1,}/gim, "_")
-                    .toLowerCase()}-${window.dynamicContent?.size}`.replace(/\s+/g, "");
+            const newPO = `${trackingValues.po}}`.toUpperCase();
+            const newC = `${trackingValues.c}-${window.dynamicContent?.styleName
+                ?.normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .replace(/\ {1,}/gim, "_")
+                .toLowerCase()}-${window.dynamicContent?.size}`.replace(/\s+/g, "");
 
             trackingValues.c = newC
             trackingValues.po = newPO
@@ -95,7 +97,6 @@ export const startMESS = () => {
 
         return true
     }
-
 };
 
 export const exit = (e, exit, trackingValues, data) => {
@@ -108,9 +109,81 @@ export const exit = (e, exit, trackingValues, data) => {
 
     if (trackingValues.triggered.exit == false) {
         track("exit", `${trackingValues.c}`, trackingValues.po);
-        trackingValues = {
-            ...trackingValues,
-            triggered: { ...trackingValues.triggered, exit: true },
-        };
     }
+};
+
+
+/**
+ * Checks if a specific key's value has changed between two objects.
+ *
+ * @param {Object} prevVal - The previous object to compare.
+ * @param {Object} val - The current object to compare.
+ * @param {string} key - The key to check for changes.
+ * @returns {boolean} - Returns true if the value associated with the key has changed, otherwise false.
+ */
+export const lookForChanges = (prevVal, val, key) => {
+    if (prevVal?.[key] !== val?.[key]) {
+        return true;
+    } else {
+        return false;
+    }
+};
+
+/**
+ * Checks if a specific key's value or a selected value has changed between two objects,
+ * and if the selected value matches the given type.
+ *
+ * @param {Object} prevData - The previous object to compare.
+ * @param {Object} data - The current object to compare.
+ * @param {string} key - The key to check for changes.
+ * @param {string} selector - The key for the value to check against the type.
+ * @param {string} type - The type to check the selected value against.
+ * @returns {boolean} - Returns true if the specified conditions are met, otherwise false.
+ */
+export const lookForChangesAndType = (prevData, data, key, selector, type) => {
+    if ((prevData?.[key] !== data?.[key] || data?.[selector] !== prevData?.[selector]) && data?.[selector].toLowerCase() === type) {
+        return true;
+    } else {
+        return false;
+    }
+};
+
+/**
+ * Updates the background color of an HTML element.
+ *
+ * @param {HTMLElement} element - The element to update.
+ * @param {string} color - The new background color.
+ */
+export const updateBackground = (element, color) => {
+    element.style.background = color;
+};
+
+/**
+ * Updates the inner HTML of an element to the specified color.
+ *
+ * @param {HTMLElement} element - The element to update.
+ * @param {string} color - The new color.
+ */
+export const updateColor = (element, color) => {
+    element.innerHTML = color;
+};
+
+/**
+ * Updates the inner HTML of an element to the specified text.
+ *
+ * @param {HTMLElement} element - The element to update.
+ * @param {string} text - The new text content.
+ */
+export const updateHtml = (element, text) => {
+    element.innerHTML = text;
+};
+
+/**
+ * Updates the display property of an HTML element.
+ *
+ * @param {HTMLElement} element - The element to update.
+ * @param {boolean} boolean - Determines whether the element should be displayed or hidden.
+ */
+export const updateDisplay = (element, boolean) => {
+    element.style.display = boolean ? 'block' : 'none';
 };
