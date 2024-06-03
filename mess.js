@@ -165,7 +165,7 @@ export const updateBackground = (element, color) => {
  * @param {string} color - The new color.
  */
 export const updateColor = (element, color) => {
-    element.innerHTML = color;
+    element.style.color = color;
 };
 
 /**

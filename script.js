@@ -3,7 +3,7 @@ let prevData;
 
 /**
  * A flat data object, these values will be visible as dynamic values in MESS
- * @type {{ text: string, 
+ * @type {{ text: string,  
  *          contentColor: string, 
  *          backgroundColor: string,
  *          testBoolean: boolean, 
